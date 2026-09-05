@@ -1,0 +1,54 @@
+name: "💡 Feature Request"
+description: "Suggest an idea or a new feature for this mod"
+title: "[Feature] "
+labels: ["suggestion"]
+body:
+  - type: dropdown
+    id: feature-category
+    attributes:
+      label: "Category of Request"
+      description: "What kind of feature are you suggesting?"
+      options:
+        - New Content (Items, Blocks, Mobs, etc.)
+        - Gameplay Mechanic / Logic
+        - Config Option / Tweak
+        - Client-side / UI / Visual Improvement
+        - Mod Compatibility (Integration with another mod)
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Feature Description"
+      description: "A clear and concise description of what you want to be added or changed."
+      placeholder: "Add a feature that does XYZ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: "Why would this be a great addition?"
+      description: "Explain how this feature improves gameplay, adds fun, or solves a current inconvenience."
+      placeholder: "This would make automation easier / This fits the theme of the mod because..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: "References / Images"
+      description: "Any links to other mods, screenshots, or conceptual sketches that help explain your idea."
+      placeholder: "Attach images by dragging and dropping them here, or paste links."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Checklist"
+      options:
+        - label: "I have searched for existing feature requests to ensure this isn't a duplicate."
+          required: true

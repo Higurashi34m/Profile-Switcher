@@ -1,0 +1,66 @@
+Copyright (c) 2026 Higurashi34m — All Rights Reserved.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PERMISSIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ✔  Play and enjoy this mod.
+  ✔  Edit configuration files.
+  ✔  Call this mod's classes or methods from your own mod (including via Mixin).
+  ✔  Create and publish patches for this mod.
+     * Patches must contain only differential data and not include any original assets or binaries.
+     * Modification of logic via patches is permitted solely for the purpose of extending or fixing this mod's functionality.
+     * Patches must require the original mod to function and must not act as a bypass or replacement.
+  ✔  Feature in videos, streams, or reviews (credit to Higurashi34m is appreciated but not required).
+  ✔  Include in modpacks via Modrinth or CurseForge (JAR must not be directly bundled).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PROHIBITIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ✘  Copying, pasting, or using slightly modified versions of any portion of the source code or binary in other projects.
+  ✘  Reusing, distributing, or incorporating any source code or logic extracted via decompilation or reverse-engineering into other software or mods.
+  ✘  Redistribution or reuploading of this mod or any associated files on any platform.
+  ✘  Creating derivative works or forks that function as a replacement for this mod (except for forks created solely to submit Pull Requests or Issues to the original repository).
+  ✘  Direct bundling of the JAR in any modpack, launcher, or third-party distribution.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+All prohibitions apply unless explicit permission has been granted by the author.
+This mod is provided "as is" without warranty of any kind. The author is not responsible for any damage, data loss, or other issues arising from the use of this mod.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+以下は上記ライセンスの日本語訳です。
+効力を持つのは英語版のみです。
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Copyright (c) 2026 Higurashi34m — 全著作権所有
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+許可されていること
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ✔  このModで遊ぶこと
+  ✔  コンフィグファイルを編集すること
+  ✔  自作ModからこのModのクラスやメソッドを呼び出すこと（Mixinなどによる呼び出しを含む）。
+  ✔  このModに対するパッチを作成・公開すること。
+     * パッチは差分データのみで構成し、元のコードやアセットを含めてはなりません。
+     * 本Modの機能を拡張または修正する目的に限り、パッチによるロジックの改変を認めます。
+     * パッチは動作に本Modのオリジナルファイルを必要とする必要があり、本Modをバイパスまたは代替するものであってはなりません。
+  ✔  このModを動画・配信・レビュー等で紹介すること（クレジット表記は任意）。
+  ✔  ModrinthまたはCurseForge経由でModpackに収録すること（JARの直接同梱は不可）。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+禁止されていること
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ✘  ソースコードやバイナリの一部または全部を、コピペ及びそれを軽微に改変した状態で他のプロジェクトへ流用すること。
+  ✘  Github, 逆コンパイル等によって抽出されたソースコードやロジックを、他のMODで再利用・配布・組み込みすること。
+  ✘  このModおよび関連ファイルを、いかなるプラットフォームにおいても再配布・再アップロードすること。
+  ✘  このModの代替となるような派生物やフォークを作成すること (ただし、オリジナルリポジトリへのプルリクエストやIssueを送る目的のみで作成されたフォークは例外とする)。
+  ✘  JARファイルをModpack・ランチャー・サードパーティ配布物に直接同梱すること。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+上記の禁止事項はすべて、著作者による明示的な許可がない限り適用されます。
+このModは「現状のまま」提供されており、いかなる保証も行いません。

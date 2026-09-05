@@ -1,0 +1,205 @@
+//file:noinspection DependencyNotationArgument
+
+// Plugins
+plugins {
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+    id 'org.spongepowered.mixin'   version '0.7.+'
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+}
+
+// Project
+base.archivesName = "${mod_id}-forge"
+version           = "${minecraft_version}+${mod_version}"
+group             = mod_group_id
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+java.withSourcesJar()
+java.withJavadocJar()
+
+// Minecraft / Forge
+minecraft {
+    copyIdeResources = true
+    mappings channel: mapping_channel, version: mapping_version
+
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    runs {
+        configureEach {
+            workingDirectory = project.file('run')
+            buildAllProjects = false
+
+            jvmArgs(
+                    '-Xmx4G', '-Xms1G',
+                    '-XX:+UseG1GC',
+                    '-XX:+ParallelRefProcEnabled',
+                    '-XX:MaxGCPauseMillis=80',
+                    '-XX:+UnlockExperimentalVMOptions',
+                    '-XX:G1NewSizePercent=20',
+                    '-XX:G1MaxNewSizePercent=40',
+                    '-XX:G1HeapRegionSize=8M',
+                    '-XX:G1ReservePercent=20',
+                    '-XX:InitiatingHeapOccupancyPercent=15',
+                    '-XX:+UseStringDeduplication',
+                    '-XX:+AllowEnhancedClassRedefinition'
+            )
+
+            property 'forge.logging.markers',           'REGISTRIES'
+            property 'forge.logging.console.level',     'debug'
+            property 'forge.enabledGameTestNamespaces',  mod_id
+
+            mods { "${mod_id}" { source sourceSets.main } }
+        }
+
+        client {
+
+        }
+
+        server {
+            workingDirectory = project.file('run/server')
+            args '--nogui'
+        }
+
+        data {
+            args '--mod', mod_id, '--all',
+                    '--output',   file('src/generated/resources/'),
+                    '--existing', file('src/main/resources/')/*,
+                    '--existing-mod', "need to runData modId"*/
+        }
+
+        gameTestServer {
+            workingDirectory = project.file("run/gametest")
+        }
+    }
+}
+sourceSets.main.resources.srcDir('src/generated/resources')
+
+// Mixin
+mixin {
+    add sourceSets.main, "${mod_id}.refmap.json"
+    config "${mod_id}.mixins.json"
+}
+
+// Repositories
+repositories {
+    mavenLocal()
+    mavenCentral()
+
+    maven {
+        name = "CurseMaven"
+        url  = "https://cursemaven.com"
+    }
+
+    maven {
+        name = "JEI"
+        url  = "https://maven.blamejared.com"
+    }
+}
+
+// Dependencies
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+    // JEI
+    compileOnly fg.deobf(libs.jei.api)
+    runtimeOnly fg.deobf(libs.jei)
+
+    // Jade
+    runtimeOnly fg.deobf(libs.jade)
+
+    def isRunData   = gradle.startParameter.taskNames.contains('runData')
+    def isRunServer = gradle.startParameter.taskNames.contains('runServer')
+
+    if (!isRunData) {
+        runtimeOnly fg.deobf(libs.bundles.optimization)
+
+        if (!isRunServer) {
+            runtimeOnly fg.deobf(libs.bundles.utility)
+        }
+    }
+}
+
+// Tasks
+processResources {
+    var properties = [
+            // Minecraft
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+
+            // Forge
+            forge_version          : forge_version,
+            forge_version_range    : forge_version_range,
+
+            // Mod
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_credits            : mod_credits,
+            mod_license            : mod_license,
+            mod_description        : mod_description,
+            mod_url                : mod_url,
+            mod_issue              : mod_issue,
+            mod_group_id           : mod_group_id,
+    ]
+
+    inputs.properties(properties)
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', '*.mixins.json']) {
+        expand(properties)
+    }
+
+    from(rootProject.file('LICENSE.txt'))
+}
+
+tasks.withType(Jar).configureEach {
+    preserveFileTimestamps = false
+    reproducibleFileOrder  = true
+
+    manifest {
+        attributes([
+                "Specification-Title"      : mod_name,
+                "Specification-Vendor"     : mod_authors,
+                "Specification-Version"    : "1",
+
+                "Implementation-Title"     : mod_id,
+                "Implementation-Version"   : project.version,
+                "Implementation-Vendor"    : mod_authors,
+                "Implementation-Timestamp" : new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+        ])
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.named('jar') {
+    finalizedBy('reobfJar')
+}
+
+tasks.named('publish') {
+    dependsOn 'reobfJar'
+}
+
+// Publishing
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            artifactId = base.archivesName.get()
+
+            artifact jar
+            artifact sourcesJar
+            artifact javadocJar
+        }
+    }
+
+    repositories {
+        maven {
+            name = 'Maven'
+            url  = layout.buildDirectory.dir('maven-repo')
+
+            metadataSources.gradleMetadata()
+        }
+    }
+}

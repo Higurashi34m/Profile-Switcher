@@ -1,0 +1,81 @@
+name: "🐛 Bug Report"
+description: "Report a bug or crash in the mod"
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: desc
+    attributes:
+      label: "Description"
+      description: "A clear and concise description of what the bug is"
+      placeholder: "The game freezes when I open the menu with XX item in hand."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: "Steps to Reproduce"
+      description: "How can we reproduce this bug? Please provide clear steps."
+      placeholder: |
+        1. Craft the XX item.
+        2. Right-click on a block with it.
+        3. The game crashes.
+    validations:
+      required: true
+
+  - type: input
+    id: log
+    attributes:
+      label: "Log"
+      description: "Please paste your crash report or latest.log. We highly recommend using services like mclo.gs or gist."
+      placeholder: "Paste a mclo.gs or gist link here."
+    validations:
+      required: false
+
+  - type: textarea
+    id: minimal-mods
+    attributes:
+      label: "Minimal Mod List for Reproduction"
+      description: "Please list the MINIMAL number of mods required to reproduce this bug. (e.g., Only This Mod + Embeddium)"
+      placeholder: |
+        - This Mod (v0.0.1)
+        - [Required Dependency Mod] (v1.0.0)
+        - [The specific mod causing the issue] (v2.3.4)
+    validations:
+      required: false
+
+  - type: input
+    id: mod-version
+    attributes:
+      label: "This mod version"
+      placeholder: "1.0.0"
+    validations:
+      required: true
+
+  - type: input
+    id: mc-version
+    attributes:
+      label: "Minecraft version"
+      placeholder: "1.20.1"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: run-type
+    attributes:
+      label: "Run Type"
+      description: "Was it a client or server crash?"
+      options:
+        - Single Player
+        - Server
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Checklist"
+      options:
+        - label: "I have searched for existing issues to ensure this isn't a duplicate."
+          required: true

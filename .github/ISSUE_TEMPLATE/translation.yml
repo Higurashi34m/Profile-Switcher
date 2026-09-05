@@ -1,0 +1,41 @@
+name: "🌐 Translation / Localization"
+description: "Submit a new language file or fix existing translations"
+title: "[Translation] "
+labels: ["improvement"]
+body:
+  - type: input
+    id: language
+    attributes:
+      label: "Language"
+      description: "Please specify the language code."
+      placeholder: "en_us"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: trans-type
+    attributes:
+      label: "Type of Request"
+      options:
+        - Add a completely new language
+        - Fix existing translation errors
+        - Update missing strings for recent versions
+    validations:
+      required: true
+
+  - type: textarea
+    id: translation-content
+    attributes:
+      label: "Translation Content (JSON)"
+      description: "Please paste or add file your translated JSON lines here."
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: "Additional Notes"
+      description: "Any extra information, context, or reasons for the changes."
+      placeholder: "example: The previous translation sounded a bit unnatural in-game, so I made it more natural."
+    validations:
+      required: false

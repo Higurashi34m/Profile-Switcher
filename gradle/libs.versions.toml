@@ -1,0 +1,71 @@
+[versions]
+jei  = "15.20.0.130"
+jade = "6855440" # 11.13.2
+
+# optimization
+embeddium   = "5681725" # 0.3.31
+chloride    = "8462759" # 1.8.1
+modernfix   = "8234337" # 5.27.50
+ferritecore = "4810975" # 6.0.1
+radium      = "5706069" # 0.12.4
+optileaves  = "7189078" # 1.2
+
+# utility
+appleSkin         = "4770828" # 2.5.1
+betterF3          = "4863626" # 7.0.2
+betterModlist     = "8539622" # 20.1.0
+clothConfig       = "5729105" # 11.1.136
+emi               = "8081375" # 1.1.24
+forgeConfigScreen = "4672356" # 8.0.2
+mouseTweaks       = "5338457" # 2.25.1
+oculus            = "6020952" # 1.8.0
+polyglotTooltip   = "8570874" # 1.6.0
+panoptic          = "8622617" # 1.08a
+
+[libraries]
+jei-api = { module = "mezz.jei:jei-1.20.1-forge-api", version.ref = "jei" }
+jei     = { module = "mezz.jei:jei-1.20.1-forge",     version.ref = "jei" }
+jade    = { module = "curse.maven:jade-324717",       version.ref = "jade" }
+
+# optimization
+embeddium   = { module = "curse.maven:embeddium-908741",       version.ref = "embeddium" }
+chloride    = { module = "curse.maven:chloride-931925",        version.ref = "chloride" }
+modernfix   = { module = "curse.maven:modernfix-790626",       version.ref = "modernfix" }
+ferritecore = { module = "curse.maven:ferritecore-429235",     version.ref = "ferritecore" }
+radium      = { module = "curse.maven:radium-reforged-570017", version.ref = "radium" }
+optileaves  = { module = "curse.maven:optileaves-1191403",     version.ref = "optileaves" }
+
+# utility
+appleSkin         = { module = "curse.maven:appleskin-248787",                version.ref = "appleSkin" }
+betterF3          = { module = "curse.maven:betterf3-401648",                 version.ref = "betterF3" }
+betterModlist     = { module = "curse.maven:better-modlist-neoforge-1089803", version.ref = "betterModlist" }
+clothconfig       = { module = "curse.maven:cloth-config-348521",             version.ref = "clothConfig" }
+emi               = { module = "curse.maven:emi-580555",                      version.ref = "emi" }
+forgeConfigScreen = { module = "curse.maven:config-menus-forge-544048",       version.ref = "forgeConfigScreen" }
+mouseTweaks       = { module = "curse.maven:mouse-tweaks-60089",              version.ref = "mouseTweaks" }
+oculus            = { module = "curse.maven:oculus-581495",                   version.ref = "oculus" }
+polyglotTooltip   = { module = "curse.maven:polyglottooltip-1485078",         version.ref = "polyglotTooltip" }
+panoptic          = { module = "curse.maven:panoptic-1620784",                version.ref = "panoptic"}
+
+[bundles]
+optimization = [
+    "embeddium",
+    "chloride",
+    "modernfix",
+    "ferritecore",
+    "radium",
+    "optileaves",
+]
+
+utility = [
+    "appleSkin",
+    "betterF3",
+    "betterModlist",
+    "clothconfig",
+    "emi",
+    "forgeConfigScreen",
+    "mouseTweaks",
+    "oculus",
+    "polyglotTooltip",
+    "panoptic"
+]
