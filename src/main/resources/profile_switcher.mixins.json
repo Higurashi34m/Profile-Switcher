@@ -4,8 +4,13 @@
   "package": "dev.higurashi.profile_switcher.mixin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "${mod_id}.refmap.json",
-  "mixins": [],
-  "client": [],
+  "mixins": [
+    "PlayerListMixin",
+    "StatsCounterAccessor"
+  ],
+  "client": [
+    "client.WorldListEntryMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   },
