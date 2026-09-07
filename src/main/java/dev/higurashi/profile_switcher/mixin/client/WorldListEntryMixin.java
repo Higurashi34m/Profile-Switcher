@@ -1,7 +1,7 @@
 package dev.higurashi.profile_switcher.mixin.client;
 
-import dev.higurashi.profile_switcher.api.common.profile.Profile;
 import dev.higurashi.profile_switcher.api.common.profile.LocalProfileManager;
+import dev.higurashi.profile_switcher.api.common.profile.Profile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.AlertScreen;
 import net.minecraft.client.gui.screens.worldselection.SelectWorldScreen;
@@ -30,23 +30,25 @@ public class WorldListEntryMixin {
     public void profile_switcher$onJoinWorld(CallbackInfo ci) {
         Profile profile = LocalProfileManager.getActiveProfile();
 
-        if (!profile.gameMode().equals(this.summary.getGameMode())) {
-            if (!(profile.allowCheat() && this.summary.hasCheats())) {
-                this.minecraft.setScreen(new AlertScreen(() -> this.minecraft.setScreen(this.screen), Component.literal("はいれないよ"), Component.literal("ゲームモード違うでしょ\n 同じゲームモードかワールドもプロファイルもチート使えないと入れないよ")));
-                ci.cancel();
-            }
+        boolean playerCheat = profile.allowCheat();
+        boolean worldCheat = this.summary.hasCheats();
+        boolean sameGameMode = profile.gameMode().equals(this.summary.getGameMode());
+
+        if (playerCheat != worldCheat) {
+            Component message = playerCheat
+                    ? Component.translatable("screen.profile_switcher.join_world.warn2")
+                    : Component.translatable("screen.profile_switcher.join_world.warn3");
+
+            this.minecraft.setScreen(new AlertScreen(() -> this.minecraft.setScreen(this.screen), Component.translatable("screen.profile_switcher.join_world.title"), message));
+            ci.cancel();
+            return;
         }
 
-        if (profile.allowCheat()) {
-            if (!this.summary.hasCheats()) {
-                this.minecraft.setScreen(new AlertScreen(() -> this.minecraft.setScreen(this.screen), Component.literal("はいれないよ"), Component.literal("あんたチート使ってるでしょ")));
-                ci.cancel();
-            }
-        } else {
-            if (this.summary.hasCheats()) {
-                this.minecraft.setScreen(new AlertScreen(() -> this.minecraft.setScreen(this.screen), Component.literal("はいれないよ"), Component.literal("あんたチート使えないでしょ")));
-                ci.cancel();
-            }
+        if (playerCheat && worldCheat) return;
+
+        if (!sameGameMode) {
+            this.minecraft.setScreen(new AlertScreen(() -> this.minecraft.setScreen(this.screen), Component.translatable("screen.profile_switcher.join_world.title"), Component.translatable("screen.profile_switcher.join_world.warn1")));
+            ci.cancel();
         }
     }
 }

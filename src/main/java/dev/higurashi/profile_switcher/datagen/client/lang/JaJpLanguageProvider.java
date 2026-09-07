@@ -20,8 +20,12 @@ public class JaJpLanguageProvider extends BaseLanguageProvider {
         this.addScreenTitle(CreateProfileScreen.SCREEN_NAME, "プロファイル新規作成");
         this.addScreenTitle(EditProfileScreen.SCREEN_NAME, "プロファイルを編集");
         this.addScreenTitle(ProfileSelectionList.ProfileEntry.DELETE_SCREEN_NAME, "このプロファイルを削除しますか?");
+        this.addScreenTitle("join_world", "ワールドに参加できません");
 
         this.addScreenWarn(ProfileSelectionList.ProfileEntry.DELETE_SCREEN_NAME, "「%s」は完全に削除され、復元ができなくなります。");
+        this.add("screen.profile_switcher.join_world.warn1", "ゲームモードが一致していません。\nチートがOFFの場合、プロファイルとワールドのゲームモードが一致している必要があります。");
+        this.add("screen.profile_switcher.join_world.warn2", "このワールドではチートが無効ですが、プロファイルでチートが有効です");
+        this.add("screen.profile_switcher.join_world.warn3", "このワールドではチートが有効ですが、プロファイルでチートが無効です");
 
         // Button
         this.addButton(SelectProfileScreen.SCREEN_NAME, "select", "選択したプロファイルで遊ぶ");

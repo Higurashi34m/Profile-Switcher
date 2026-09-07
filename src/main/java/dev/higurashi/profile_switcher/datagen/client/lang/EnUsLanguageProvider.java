@@ -20,8 +20,12 @@ public class EnUsLanguageProvider extends BaseLanguageProvider {
         this.addScreenTitle(CreateProfileScreen.SCREEN_NAME, "Create New Profile");
         this.addScreenTitle(EditProfileScreen.SCREEN_NAME, "Edit Profile");
         this.addScreenTitle(ProfileSelectionList.ProfileEntry.DELETE_SCREEN_NAME, "Are you sure you want to delete this profile?");
+        this.addScreenTitle("join_world", "You can't join world");
 
         this.addScreenWarn(ProfileSelectionList.ProfileEntry.DELETE_SCREEN_NAME, "\"%s\" will be lost forever! (A long time!)");
+        this.add("screen.profile_switcher.join_world.warn1", "Game modes do not match.\nWhen cheats are disabled, game modes must match.");
+        this.add("screen.profile_switcher.join_world.warn2", "Cheats are disabled in this world, but enabled in your profile.");
+        this.add("screen.profile_switcher.join_world.warn3", "Cheats are enabled in this world, but disabled in your profile.");
 
         // Button
         this.addButton(SelectProfileScreen.SCREEN_NAME, "select", "Play Selected Profile");

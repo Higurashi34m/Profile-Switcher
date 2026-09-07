@@ -9,5 +9,9 @@
   "screen.profile_switcher.delete_profile.title": "このプロファイルを削除しますか?",
   "screen.profile_switcher.delete_profile.warn": "「%s」は完全に削除され、復元ができなくなります。",
   "screen.profile_switcher.edit_profile.title": "プロファイルを編集",
+  "screen.profile_switcher.join_world.title": "ワールドに参加できません",
+  "screen.profile_switcher.join_world.warn1": "ゲームモードが一致していません。\nチートがOFFの場合、プロファイルとワールドのゲームモードが一致している必要があります。",
+  "screen.profile_switcher.join_world.warn2": "このワールドではチートが無効ですが、プロファイルでチートが有効です",
+  "screen.profile_switcher.join_world.warn3": "このワールドではチートが有効ですが、プロファイルでチートが無効です",
   "screen.profile_switcher.select_profile.title": "プロファイルを選択"
 }
