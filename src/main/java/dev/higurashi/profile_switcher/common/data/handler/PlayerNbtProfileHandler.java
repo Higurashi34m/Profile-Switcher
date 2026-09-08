@@ -50,10 +50,16 @@ public class PlayerNbtProfileHandler implements IProfileDataHandler {
 
     @Override
     public void saveWorldData(ServerPlayer player, File worldDir) {
-        CompoundTag tag = player.saveWithoutId(new CompoundTag());
-        tag.getAllKeys().stream().filter(key -> !WORLD_KEYS.contains(key)).forEach(tag::remove);
+        CompoundTag fullTag = player.saveWithoutId(new CompoundTag());
+        CompoundTag worldTag = new CompoundTag();
 
-        save(tag, new File(worldDir, FILE_NAME));
+        for (String key : WORLD_KEYS) {
+            if (fullTag.contains(key)) {
+                worldTag.put(key, fullTag.get(key).copy());
+            }
+        }
+
+        save(worldTag, new File(worldDir, FILE_NAME));
     }
 
     private void save(CompoundTag tag, File file) {
